@@ -38,4 +38,6 @@ namespace bll {
 	void Update(Ball& ball);
 
 	void Draw(Ball& ball);
+
+	void Die(Ball& ball);
 }

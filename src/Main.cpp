@@ -1,6 +1,6 @@
 #include "BorjaLib.h"
 #include "Ball.h"
-#include "Obstacle.h"
+#include "ObstacleManager.h"
 
 int main() {
 
@@ -37,10 +37,8 @@ int main() {
 	bll::Ball ball;
 	bll::Init(ball);
 
-	const int maxObstacles = 5;
-
-	obstcl::Obstacle obstacles[maxObstacles];
-	obstcl::Init(obstacles[0]);
+	obstcl::FullObstacle obstacles[obstcl::maxObstacles];
+	obstcl::Init(obstacles);
 
 	// Pause
 	btn::Button returnButton;
@@ -171,7 +169,7 @@ int main() {
 			break;
 
 		case GameState::GAMEPLAY:
-			
+
 			gameTimer += rend::deltaTime;
 
 			btn::UpdateInput(pauseButton);
@@ -185,19 +183,16 @@ int main() {
 
 			bll::Update(ball);
 
-			for (int o = 0; o < 4; o++)
+			for (int o = 0; o < obstcl::maxObstacles; o++)
 			{
-				if (coll::RecOnRec(ball.pos, ball.size, obstacles[o].pos, obstacles[o].size, ball.crashPoint)) {
-					ball.isAlive = false;
-					ball.color = GREY_B;
-					ball.vel = 0.0f;
-					//currentState = GameState::PAUSED;
+				if (obstcl::mngr::Collide(obstacles[o].obstacles, ball)) {
+					bll::Die(ball);
 				}
 			}
 
 			//mouseParticleActivator.pos = rend::mousePos;
 			//prtcl::Update(mouseParticleActivator, mouseParticles);
-			
+
 			break;
 
 		case GameState::CREDITS:
@@ -248,7 +243,7 @@ int main() {
 			btn::Draw(pauseButton);
 
 			scoreTextData.text = std::to_string(gameTimer);
-			drw::Text(scoreTextData.text.c_str(),scoreTextData, { 0.5f, 0.5f }, scoreTextData.fontSize, { 0,0 }, WHITE_B);
+			//drw::Text(scoreTextData.text.c_str(),scoreTextData, { 0.5f, 0.5f }, scoreTextData.fontSize, { 0,0 }, WHITE_B);
 			break;
 
 		case GameState::CREDITS:
@@ -263,11 +258,11 @@ int main() {
 			btn::Draw(exitPauseButton);
 
 			scoreTextData.text = std::to_string(gameTimer);
-			drw::Text(scoreTextData.text.c_str(), scoreTextData, { 0.5f, 0.3f }, scoreTextData.fontSize, { 0,0 }, WHITE_B);
+			//drw::Text(scoreTextData.text.c_str(), scoreTextData, { 0.5f, 0.3f }, scoreTextData.fontSize, { 0,0 }, WHITE_B);
 			break;
 		}
 
-		
+
 		drw::Text(versionTextData.text.c_str(), versionTextData, { 0.97f, 0.045f }, versionTextData.fontSize, { 0,0 }, WHITE_B);
 
 		drw::End();

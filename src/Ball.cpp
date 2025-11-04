@@ -26,16 +26,17 @@ namespace bll {
 		}
 
 		if (ctrl::IsKeyPressed(ball.upKey)) {
-			ball.vel.y = ball.moveForce;
+			//ball.vel.y = ball.moveForce;
+			ball.vel.y = ball.jumpForce;
 		}
 
 		if (ctrl::IsKeyPressed(ball.downKey)) {
-			ball.vel.y = -ball.moveForce;
+			//ball.vel.y = -ball.moveForce;
 		}
 
-		//if (ctrl::IsMousePressed(ball.jumpButton)) {
-		//	ball.vel.y = ball.jumpForce;
-		//}
+		if (ctrl::IsMousePressed(ball.jumpButton)) {
+			ball.vel.y = ball.jumpForce;
+		}
 	}
 
 	void Update(Ball& ball)
@@ -44,9 +45,18 @@ namespace bll {
 			return;
 		}
 
-		//ball.vel.y -= gravity * rend::deltaTime;
+		ball.vel.y -= gravity * rend::deltaTime;
 
 		ball.pos += ball.vel * rend::deltaTime;
+
+		if (ball.pos.y + ball.size.y > 1.0f) {
+			ball.pos.y = 1.0f - ball.size.y;
+			ball.vel = 0.0f;
+		}
+		if (ball.pos.y - ball.size.y < 0.0f) {
+			ball.pos.y = ball.size.y;
+			Die(ball);
+		}
 	}
 
 	void Draw(Ball& ball)
@@ -55,5 +65,15 @@ namespace bll {
 			return;
 		}
 		drw::Circle(ball.pos, ball.size, ball.color);
+		if (!ball.isAlive) {
+
+			drw::Circle(ball.crashPoint, ball.size * (1.0f/3.0f), MAGENTA_B);
+		}
+	}
+	void Die(Ball& ball)
+	{
+		ball.isAlive = false;
+		ball.vel = 0.0f;
+		ball.color = GREY_B;
 	}
 }

@@ -22,10 +22,12 @@
     <ClCompile Include="src\Ball.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Obstacle.cpp" />
+    <ClCompile Include="src\ObstacleManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ball.h" />
     <ClInclude Include="src\Obstacle.h" />
+    <ClInclude Include="src\ObstacleManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

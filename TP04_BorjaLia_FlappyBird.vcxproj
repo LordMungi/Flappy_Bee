@@ -23,11 +23,13 @@
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Obstacle.cpp" />
     <ClCompile Include="src\ObstacleManager.cpp" />
+    <ClCompile Include="src\StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ball.h" />
     <ClInclude Include="src\Obstacle.h" />
     <ClInclude Include="src\ObstacleManager.h" />
+    <ClInclude Include="src\StateManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -113,12 +115,7 @@
       <AdditionalDependencies>BorjaLib.lib;raylib.lib;winmm.lib;sigil.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)lib\sigil-vc2015-win64\lib\*.dll" "$(OutDir)" /y
-xcopy "$(SolutionDir)config\" "$(OutDir)config\" /i /y
-xcopy "$(SolutionDir)data\" "$(OutDir)data\" /i /y
-xcopy "$(SolutionDir)res\audio\" "$(OutDir)res\audio\" /i /y
-xcopy "$(SolutionDir)res\fonts\" "$(OutDir)res\fonts\" /i /y
-xcopy "$(SolutionDir)res\sprites" "$(OutDir)res\sprites" /i /y</Command>
+      <Command>"$(SolutionDir)scripts\config.bat" "$(SolutionDir)" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -142,12 +139,7 @@ xcopy "$(SolutionDir)res\sprites" "$(OutDir)res\sprites" /i /y</Command>
       <AdditionalDependencies>BorjaLib.lib;raylib.lib;winmm.lib;sigil.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)lib\sigil-vc2015-win64\lib\*.dll" "$(OutDir)" /y
-xcopy "$(SolutionDir)config\" "$(OutDir)config\" /i /y
-xcopy "$(SolutionDir)data\" "$(OutDir)data\" /i /y
-xcopy "$(SolutionDir)res\audio\" "$(OutDir)res\audio\" /i /y
-xcopy "$(SolutionDir)res\fonts\" "$(OutDir)res\fonts\" /i /y
-xcopy "$(SolutionDir)res\sprites" "$(OutDir)res\sprites" /i /y</Command>
+      <Command>"$(SolutionDir)scripts\config.bat" "$(SolutionDir)" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -166,12 +158,7 @@ xcopy "$(SolutionDir)res\sprites" "$(OutDir)res\sprites" /i /y</Command>
       <AdditionalDependencies>BorjaLib.lib;raylib.lib;winmm.lib;sigil.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)lib\sigil-vc2015-win64\lib\*.dll" "$(OutDir)" /y
-xcopy "$(SolutionDir)config\" "$(OutDir)config\" /i /y
-xcopy "$(SolutionDir)data\" "$(OutDir)data\" /i /y
-xcopy "$(SolutionDir)res\audio\" "$(OutDir)res\audio\" /i /y
-xcopy "$(SolutionDir)res\fonts\" "$(OutDir)res\fonts\" /i /y
-xcopy "$(SolutionDir)res\sprites" "$(OutDir)res\sprites" /i /y</Command>
+      <Command>"$(SolutionDir)scripts\config.bat" "$(SolutionDir)" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -195,12 +182,7 @@ xcopy "$(SolutionDir)res\sprites" "$(OutDir)res\sprites" /i /y</Command>
       <AdditionalDependencies>BorjaLib.lib;raylib.lib;winmm.lib;sigil.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)lib\sigil-vc2015-win64\lib\*.dll" "$(OutDir)" /y
-xcopy "$(SolutionDir)config\" "$(OutDir)config\" /i /y
-xcopy "$(SolutionDir)data\" "$(OutDir)data\" /i /y
-xcopy "$(SolutionDir)res\audio\" "$(OutDir)res\audio\" /i /y
-xcopy "$(SolutionDir)res\fonts\" "$(OutDir)res\fonts\" /i /y
-xcopy "$(SolutionDir)res\sprites" "$(OutDir)res\sprites" /i /y</Command>
+      <Command>"$(SolutionDir)scripts\config.bat" "$(SolutionDir)" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

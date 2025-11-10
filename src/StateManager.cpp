@@ -34,7 +34,8 @@ void MainLoop()
 	backgroundFar.file = "res/sprites/parallax/back.png";
 	backgroundFar.size = { 2.0f,1.0f };
 	backgroundFar.offset = {0.0f,0.0f};
-	float farDistance = 1.0f;
+	float farSpeed = 0.2f;
+	vec::Vector2 farOffset2 = { backgroundFar.size.x, 0.0f };
 
 	backgroundFar.id = drw::InitSpriteData(backgroundFar);
 
@@ -42,7 +43,8 @@ void MainLoop()
 	backgroundMid.file = "res/sprites/parallax/mid.png";
 	backgroundMid.size = { 2.0f,1.0f };
 	backgroundMid.offset = {0.0f,0.0f};
-	float midDistance = 0.75f;
+	float midSpeed = 0.4f;
+	vec::Vector2 midOffset2 = { backgroundMid.size.x, 0.0f };
 
 	backgroundMid.id = drw::InitSpriteData(backgroundMid);
 
@@ -50,7 +52,8 @@ void MainLoop()
 	backgroundNear.file = "res/sprites/parallax/front.png";
 	backgroundNear.size = { 2.0f,1.0f };
 	backgroundNear.offset = {0.0f,0.0f};
-	float nearDistance = 0.5f;
+	float nearSpeed = 0.6f;
+	vec::Vector2 nearOffset2 = { backgroundNear.size.x, 0.0f };
 
 	backgroundNear.id = drw::InitSpriteData(backgroundNear);
 
@@ -196,18 +199,30 @@ void MainLoop()
 
 		case GameState::GAMEPLAY:
 
-			backgroundFar.offset.x -= rend::deltaTime * farDistance;
-			backgroundMid.offset.x -= rend::deltaTime * midDistance;
-			backgroundNear.offset.x -= rend::deltaTime * nearDistance;
+			backgroundFar.offset.x -= rend::deltaTime * farSpeed;
+			farOffset2.x -= rend::deltaTime * farSpeed;
+			backgroundMid.offset.x -= rend::deltaTime * midSpeed;
+			midOffset2.x -= rend::deltaTime * midSpeed;
+			backgroundNear.offset.x -= rend::deltaTime * nearSpeed;
+			nearOffset2.x -= rend::deltaTime * nearSpeed;
 
-			if (backgroundFar.offset.x <= -1.0f) {
-				backgroundFar.offset.x = 0;
+			if (backgroundFar.offset.x <= -backgroundFar.size.x) {
+				backgroundFar.offset.x = backgroundFar.size.x;
 			}
-			if (backgroundMid.offset.x <= -1.0f) {
-				backgroundMid.offset.x = 0;
+			if (farOffset2.x <= -backgroundFar.size.x) {
+				farOffset2.x = backgroundFar.size.x;
 			}
-			if (backgroundNear.offset.x <= -1.0f) {
-				backgroundNear.offset.x = 0;
+			if (backgroundMid.offset.x <= -backgroundMid.size.x) {
+				backgroundMid.offset.x = backgroundMid.size.x;
+			}
+			if (midOffset2.x <= -backgroundMid.size.x) {
+				midOffset2.x = backgroundMid.size.x;
+			}
+			if (backgroundNear.offset.x <= -backgroundNear.size.x) {
+				backgroundNear.offset.x = backgroundNear.size.x;
+			}
+			if (nearOffset2.x <= -backgroundNear.size.x) {
+				nearOffset2.x = backgroundNear.size.x;
 			}
 
 			if (isPaused) {
@@ -285,9 +300,12 @@ void MainLoop()
 
 		case GameState::GAMEPLAY:
 
-			drw::Sprite(drw::spriteDataList[backgroundFar.id], { 0.5f,0.5f }, {2.0f,1.0f},backgroundFar.offset);
+			drw::Sprite(drw::spriteDataList[backgroundFar.id], { 0.5f,0.5f }, { 2.0f,1.0f }, backgroundFar.offset);
+			drw::Sprite(drw::spriteDataList[backgroundFar.id], { 0.5f,0.5f }, { 2.0f,1.0f }, farOffset2);
 			drw::Sprite(drw::spriteDataList[backgroundMid.id], { 0.5f,0.5f }, { 2.0f,1.0f }, backgroundMid.offset);
+			drw::Sprite(drw::spriteDataList[backgroundMid.id], { 0.5f,0.5f }, { 2.0f,1.0f }, midOffset2);
 			drw::Sprite(drw::spriteDataList[backgroundNear.id], { 0.5f,0.5f }, { 2.0f,1.0f }, backgroundNear.offset);
+			drw::Sprite(drw::spriteDataList[backgroundNear.id], { 0.5f,0.5f }, { 2.0f,1.0f }, nearOffset2);
 
 			//prtcl::Draw(mouseParticles);
 

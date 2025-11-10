@@ -117,9 +117,6 @@
     <PostBuildEvent>
       <Command>"$(SolutionDir)scripts\config.bat" "$(SolutionDir)" "$(OutDir)"</Command>
     </PostBuildEvent>
-    <PreBuildEvent>
-      <Command>"$(SolutionDir)scripts\config.bat" "$(SolutionDir)" "$(OutputPath)"</Command>
-    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -144,9 +141,6 @@
     <PostBuildEvent>
       <Command>"$(SolutionDir)scripts\config.bat" "$(SolutionDir)" "$(OutDir)"</Command>
     </PostBuildEvent>
-    <PreBuildEvent>
-      <Command>"$(SolutionDir)scripts\config.bat" "$(SolutionDir)" "$(OutputPath)"</Command>
-    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -166,9 +160,6 @@
     <PostBuildEvent>
       <Command>"$(SolutionDir)scripts\config.bat" "$(SolutionDir)" "$(OutDir)"</Command>
     </PostBuildEvent>
-    <PreBuildEvent>
-      <Command>"$(SolutionDir)scripts\config.bat" "$(SolutionDir)" "$(OutputPath)"</Command>
-    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -193,9 +184,6 @@
     <PostBuildEvent>
       <Command>"$(SolutionDir)scripts\config.bat" "$(SolutionDir)" "$(OutDir)"</Command>
     </PostBuildEvent>
-    <PreBuildEvent>
-      <Command>"$(SolutionDir)scripts\config.bat" "$(SolutionDir)" "$(OutputPath)"</Command>
-    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

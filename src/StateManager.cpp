@@ -23,7 +23,9 @@ void MainLoop()
 
 	// Credits
 	btn::Button backButton;
+	drw::TextData creditsTitleTextData;
 	drw::TextData creditsTextData;
+	drw::TextData credits2TextData;
 
 	// Gameplay
 	btn::Button pauseButton;
@@ -138,8 +140,14 @@ void MainLoop()
 	backButton.textData.text = "Back";
 	btn::Init(backButton);
 
+	creditsTitleTextData.fontSize = 0.07f;
+	creditsTitleTextData.text = "Programming";
+
 	creditsTextData.fontSize = 0.05f;
-	creditsTextData.text = "Made by Borja Lia";
+	creditsTextData.text = "Borja Lia";
+
+	credits2TextData.fontSize = 0.05f;
+	credits2TextData.text = "Santino Verrua";
 
 	//Gameplay
 	pauseButton = templateButton;
@@ -177,7 +185,7 @@ void MainLoop()
 	btn::Init(exitPauseButton);
 
 	versionTextData.fontSize = 0.05f;
-	versionTextData.text = "v0.2";
+	versionTextData.text = "v0.4";
 	versionTextData.color = SEMITRANSPARENT_B;
 
 	while (isRunning) {
@@ -328,7 +336,7 @@ void MainLoop()
 			btn::Draw(play2Button);
 			btn::Draw(creditsButton);
 			btn::Draw(exitButton);
-			drw::Text(versionTextData.text.c_str(), versionTextData, { 0.97f, 0.045f }, versionTextData.fontSize, { 0,0 }, WHITE_B);
+			drw::Text(versionTextData.text.c_str(), versionTextData, { 0.95f, 0.045f }, versionTextData.fontSize, { 0,0 }, WHITE_B);
 			break;
 
 		case GameState::GAMEPLAY:
@@ -368,8 +376,10 @@ void MainLoop()
 		case GameState::CREDITS:
 
 			btn::Draw(backButton);
-			drw::Text(creditsTextData.text.c_str(), creditsTextData, { 0.5f, 0.6f }, creditsTextData.fontSize, { 0,0 }, WHITE_B);
-			drw::Text(versionTextData.text.c_str(), versionTextData, { 0.97f, 0.045f }, versionTextData.fontSize, { 0,0 }, WHITE_B);
+			drw::Text(creditsTitleTextData.text.c_str(), creditsTitleTextData, { 0.5f, 0.7f }, creditsTitleTextData.fontSize, { 0,0 }, BLACK_B);
+			drw::Text(creditsTextData.text.c_str(), creditsTextData, { 0.5f, 0.6f }, creditsTextData.fontSize, { 0,0 }, BLACK_B);
+			drw::Text(credits2TextData.text.c_str(), credits2TextData, { 0.5f, 0.53f }, credits2TextData.fontSize, { 0,0 }, BLACK_B);
+			drw::Text(versionTextData.text.c_str(), versionTextData, { 0.95f, 0.045f }, versionTextData.fontSize, { 0,0 }, WHITE_B);
 			break;
 		}
 

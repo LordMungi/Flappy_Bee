@@ -10,12 +10,14 @@ void MainLoop()
 	bool isRunning = true;
 	bLib::Init("Flappy Bird");
 	GameState currentState = GameState::MAIN_MENU;
+	int playersInGame = 0;
 
 	float gameTimer = 0.0f;
 	//const int MOUSE_PARTICLE_COUNT = 5;
 
 	//Menu
 	btn::Button playButton;
+	btn::Button play2Button;
 	btn::Button creditsButton;
 	btn::Button exitButton;
 
@@ -59,13 +61,12 @@ void MainLoop()
 
 	backgroundNear.id = drw::InitSpriteData(backgroundNear);
 
+	const int maxPlayers = 2;
 
-	bll::Ball player1;
-	bll::Init(player1, 1);
+	bll::Ball players[maxPlayers] = {};
+	for (int i = 0; i < maxPlayers; i++)
+		bll::Init(players[i], i + 1);
 
-
-	bll::Ball player2;
-	bll::Init(player2, 2);
 
 	obstcl::FullObstacle obstacles[obstcl::maxObstacles];
 	obstcl::Init(obstacles);
@@ -113,16 +114,21 @@ void MainLoop()
 	//Menu
 	playButton = templateButton;
 	playButton.pos = { 0.5f, 0.6f };
-	playButton.textData.text = "Play";
+	playButton.textData.text = "1P";
 	btn::Init(playButton);
 
+	play2Button = templateButton;
+	play2Button.pos = { 0.5f, 0.5f };
+	play2Button.textData.text = "2P";
+	btn::Init(play2Button);
+
 	creditsButton = templateButton;
-	creditsButton.pos = { 0.5f, 0.5f };
+	creditsButton.pos = { 0.5f, 0.4f };
 	creditsButton.textData.text = "Credits";
 	btn::Init(creditsButton);
 
 	exitButton = templateButton;
-	exitButton.pos = { 0.5f, 0.4f };
+	exitButton.pos = { 0.5f, 0.3f };
 	exitButton.textData.text = "Exit";
 	btn::Init(exitButton);
 
@@ -186,14 +192,25 @@ void MainLoop()
 		case GameState::MAIN_MENU:
 
 			btn::UpdateInput(playButton);
+			btn::UpdateInput(play2Button);
 			btn::UpdateInput(creditsButton);
 			btn::UpdateInput(exitButton);
 
 			if (playButton.signal) {
+				playersInGame = 1;
 				currentState = GameState::GAMEPLAY;
 				isPaused = false;
 				gameTimer = 0.0f;
-				bll::Reset(player1);
+				bll::Reset(players[0]);
+				obstcl::Reset(obstacles);
+			}
+			if (play2Button.signal) {
+				playersInGame = 2;
+				currentState = GameState::GAMEPLAY;
+				isPaused = false;
+				gameTimer = 0.0f;
+				bll::Reset(players[0]);
+				bll::Reset(players[1]);
 				obstcl::Reset(obstacles);
 			}
 			if (creditsButton.signal) {
@@ -242,8 +259,9 @@ void MainLoop()
 				if (retryButton.signal) {
 					isPaused = false;
 					gameTimer = 0.0f;
-					bll::Reset(player1);
-					bll::Reset(player2);
+					for (int i = 0; i < playersInGame; i++)
+						bll::Reset(players[i]);
+					
 					obstcl::Reset(obstacles);
 				}
 
@@ -265,21 +283,20 @@ void MainLoop()
 				isPaused = true;
 			}
 
-			bll::UpdateInput(player1);
-			bll::UpdateInput(player2);
+			for (int i = 0; i < playersInGame; i++)
+				bll::UpdateInput(players[i]);
 
 			obstcl::Update(obstacles);
 
-			bll::Update(player1);
-			bll::Update(player2);
+			for (int i = 0; i < playersInGame; i++)
+				bll::Update(players[i]);
 
 			for (int o = 0; o < obstcl::maxObstacles; o++)
 			{
-				if (obstcl::mngr::Collide(obstacles[o].obstacles, player1)) {
-					bll::Die(player1);
-				}
-				if (obstcl::mngr::Collide(obstacles[o].obstacles, player2)) {
-					bll::Die(player2);
+				for (int i = 0; i < playersInGame; i++)
+				{
+					if (obstcl::mngr::Collide(obstacles[o].obstacles, players[i])) 
+						bll::Die(players[i]);
 				}
 			}
 
@@ -307,6 +324,7 @@ void MainLoop()
 		case GameState::MAIN_MENU:
 
 			btn::Draw(playButton);
+			btn::Draw(play2Button);
 			btn::Draw(creditsButton);
 			btn::Draw(exitButton);
 			drw::Text(versionTextData.text.c_str(), versionTextData, { 0.97f, 0.045f }, versionTextData.fontSize, { 0,0 }, WHITE_B);
@@ -325,8 +343,8 @@ void MainLoop()
 
 			obstcl::Draw(obstacles);
 
-			bll::Draw(player1);
-			bll::Draw(player2);
+			for (int i = 0; i < playersInGame; i++)
+				bll::Draw(players[i]);
 
 			btn::Draw(pauseButton);
 
@@ -354,13 +372,8 @@ void MainLoop()
 			break;
 		}
 
-
-
 		drw::End();
-
 		//Sounds
-
 	}
-
 	rend::Close();
 }

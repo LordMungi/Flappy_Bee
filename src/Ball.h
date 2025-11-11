@@ -12,7 +12,7 @@ namespace bll {
 
 		bool isAlive = false;
 
-		vec::Vector2 pos = { 0.2f,0.5f };
+		vec::Vector2 pos;
 
 		vec::Vector2 vel = { 0.0f,0.0f };
 

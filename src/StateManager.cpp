@@ -4,8 +4,10 @@ void MainLoop()
 
 {
 	bool isPaused = false;
+	bool isActive = true;
 
 	ctrl::Key pauseKey = ctrl::Key::ESCAPE;
+	ctrl::Key restartKey = ctrl::Key::SPACE;
 
 	bool isRunning = true;
 	bLib::Init("Flappy Bird");
@@ -33,6 +35,7 @@ void MainLoop()
 	//drw::AnimationData mouseAnim;
 	//prtcl::ParticleActivator mouseParticleActivator;
 	//prtcl::ParticleData mouseParticles[MOUSE_PARTICLE_COUNT]; // Array estático
+	drw::TextData labelData;
 
 	vec::Vector2 backgroundSize = { 3.5f, 1 };
 
@@ -191,13 +194,6 @@ void MainLoop()
 	while (isRunning) {
 
 		isRunning = !rend::ShouldExit();
-		bool isActive = false;
-		for (int i = 0; i < playersInGame; i++)
-		{
-			if (players[i].isAlive)
-				isActive = true;
-		}
-
 
 		//Update
 		bLib::UpdateStart();
@@ -305,6 +301,17 @@ void MainLoop()
 
 
 			}
+			else
+			{
+				if (ctrl::IsKeyPressed(restartKey))
+				{
+					gameTimer = 0.0f;
+					for (int i = 0; i < playersInGame; i++)
+						bll::Reset(players[i]);
+					obstcl::Reset(obstacles);
+				}
+			}
+
 			for (int o = 0; o < obstcl::maxObstacles; o++)
 			{
 				for (int i = 0; i < playersInGame; i++)
@@ -331,6 +338,13 @@ void MainLoop()
 				currentState = GameState::MAIN_MENU;
 			}
 			break;
+		}
+
+		isActive = false;
+		for (int i = 0; i < playersInGame; i++)
+		{
+			if (players[i].isAlive)
+				isActive = true;
 		}
 		bLib::UpdateEnd();
 
@@ -368,6 +382,12 @@ void MainLoop()
 			btn::Draw(pauseButton);
 
 			//drw::Text(scoreTextData.text.c_str(),scoreTextData, { 0.5f, 0.5f }, scoreTextData.fontSize, { 0,0 }, WHITE_B);
+
+			if (!isActive)
+			{
+				labelData.text = "SPACE to RESTART";
+				drw::Text(labelData.text.c_str(), { 0.5f, 0.5f }, { 0.1f }, { 0,0 }, BLACK_B);
+			}
 
 			if (isPaused) {
 				drw::Rectangle(vec::Vector4(0.0f, 0.0f, 1.0f, 1.0f), SEMITRANSPARENT_B);

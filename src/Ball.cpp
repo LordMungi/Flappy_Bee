@@ -22,6 +22,7 @@ namespace bll {
 		}
 
 		ball.sprite.file = "res/sprites/bee.png";
+		ball.sprite.size = ball.size * 5;
 		ball.sprite.id = drw::InitSpriteData(ball.sprite);
 
 		ball.score = 0;
@@ -37,11 +38,11 @@ namespace bll {
 		{
 		case 1:
 			ball.pos = { 0.1f, 0.5f };
-			ball.color = MAROON_B;
+			ball.color = WHITE_B;
 			break;
 		case 2:
 			ball.pos = { 0.2f, 0.5f };
-			ball.color = BLUEBERRY_B;
+			ball.color = ORANGE_B;
 			break;
 		}
 		ball.score = 0;
@@ -86,8 +87,9 @@ namespace bll {
 		if (!ball.isActive) {
 			return;
 		}
-		drw::Circle(ball.pos, ball.size, ball.color);
-		drw::Sprite(drw::spriteDataList[ball.sprite.id], ball.pos, ball.size, { 0,0 }, ball.color);
+		//drw::Circle(ball.pos, ball.size, ball.color);
+		drw::Sprite(drw::spriteDataList[ball.sprite.id], ball.pos, ball.sprite.size, { 0,0 }, ball.color);
+
 		if (!ball.isAlive) {
 
 			//drw::Circle(ball.crashPoint, ball.size * (1.0f/3.0f), MAGENTA_B);

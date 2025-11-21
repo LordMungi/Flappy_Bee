@@ -36,9 +36,10 @@ namespace game
 
 	bool isPaused = false;
 	bool isActive = true;
+	bool isStarted = false;
 
 	ctrl::Key pauseKey = ctrl::Key::ESCAPE;
-	ctrl::Key restartKey = ctrl::Key::SPACE;
+	ctrl::Key startKey = ctrl::Key::SPACE;
 
 	void init()
 	{
@@ -99,6 +100,7 @@ namespace game
 		nextState = GameState::GAMEPLAY;
 
 		isPaused = false;
+		isStarted = false;
 	}
 
 	GameState update()
@@ -125,7 +127,7 @@ namespace game
 				nextState = GameState::MAIN_MENU;
 			}
 		}
-		else if (isActive)
+		else if (isActive && isStarted)
 		{
 			if (backgroundFar.offset.x <= -backgroundFar.size.x) {
 				backgroundFar.offset.x = farOffset2.x + backgroundFar.size.x;
@@ -165,8 +167,9 @@ namespace game
 		}
 		else
 		{
-			if (ctrl::IsKeyPressed(restartKey))
+			if (ctrl::IsKeyPressed(startKey))
 			{
+				isStarted = true;
 				for (int i = 0; i < config::playersInGame; i++)
 					bll::Reset(players[i]);
 				obstcl::Reset(obstacles);
@@ -218,6 +221,29 @@ namespace game
 		{
 			labelData.text = "SPACE to RESTART";
 			drw::Text(labelData.text.c_str(), { 0.5f, 0.5f }, { 0.1f }, { 0,0 }, BLACK_B);
+		}
+		if (!isStarted)
+		{
+			labelData.text = "SPACE to START";
+			drw::Text(labelData.text.c_str(), { 0.5f, 0.5f }, { 0.1f }, { 0,0 }, BLACK_B);
+
+			labelData.text = "P1";
+			drw::Text(labelData.text.c_str(), { 0.1f, 0.6f }, { 0.05f }, { 0,0 }, BLACK_B);
+			labelData.text = "W";
+			drw::Text(labelData.text.c_str(), { 0.1f, 0.4f }, { 0.05f }, { 0,0 }, BLACK_B);
+			labelData.text = "LMB";
+			drw::Text(labelData.text.c_str(), { 0.1f, 0.35f }, { 0.05f }, { 0,0 }, BLACK_B);
+
+			if (config::playersInGame > 1)
+			{
+				labelData.text = "P2";
+				drw::Text(labelData.text.c_str(), { 0.2f, 0.6f }, { 0.05f }, { 0,0 }, BLACK_B);
+				labelData.text = "UP";
+				drw::Text(labelData.text.c_str(), { 0.2f, 0.4f }, { 0.05f }, { 0,0 }, BLACK_B);
+				labelData.text = "RMB";
+				drw::Text(labelData.text.c_str(), { 0.2f, 0.35f }, { 0.05f }, { 0,0 }, BLACK_B);
+			}
+
 		}
 
 		if (isPaused) {

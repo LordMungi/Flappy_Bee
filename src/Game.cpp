@@ -45,21 +45,21 @@ namespace game
 		vec::Vector2 backgroundSize = { 3.5f, 1 };
 
 		backgroundFar.file = "res/sprites/parallax/back.png";
-		backgroundFar.size = { 2.0f,1.0f };
+		backgroundFar.size = { 1.5f,1.0f };
 		backgroundFar.offset = { 0.0f,0.0f };
 		farOffset2 = { backgroundFar.size.x, 0.0f };
 
 		backgroundFar.id = drw::InitSpriteData(backgroundFar);
 
 		backgroundMid.file = "res/sprites/parallax/mid.png";
-		backgroundMid.size = { 2.0f,1.0f };
+		backgroundMid.size = { 1.5f,1.0f };
 		backgroundMid.offset = { 0.0f,0.0f };
 		midOffset2 = { backgroundMid.size.x, 0.0f };
 
 		backgroundMid.id = drw::InitSpriteData(backgroundMid);
 
 		backgroundNear.file = "res/sprites/parallax/front.png";
-		backgroundNear.size = { 2.0f,1.0f };
+		backgroundNear.size = { 1.5f,1.0f };
 		backgroundNear.offset = { 0.0f,0.0f };
 		nearOffset2 = { backgroundNear.size.x, 0.0f };
 
@@ -199,12 +199,12 @@ namespace game
 
 	void draw()
 	{
-		drw::Sprite(drw::spriteDataList[backgroundFar.id], { 0.5f,0.5f }, { 2.0f,1.0f }, backgroundFar.offset);
-		drw::Sprite(drw::spriteDataList[backgroundFar.id], { 0.5f,0.5f }, { 2.0f,1.0f }, farOffset2);
-		drw::Sprite(drw::spriteDataList[backgroundMid.id], { 0.5f,0.5f }, { 2.0f,1.0f }, backgroundMid.offset);
-		drw::Sprite(drw::spriteDataList[backgroundMid.id], { 0.5f,0.5f }, { 2.0f,1.0f }, midOffset2);
-		drw::Sprite(drw::spriteDataList[backgroundNear.id], { 0.5f,0.5f }, { 2.0f,1.0f }, backgroundNear.offset);
-		drw::Sprite(drw::spriteDataList[backgroundNear.id], { 0.5f,0.5f }, { 2.0f,1.0f }, nearOffset2);
+		drw::Sprite(drw::spriteDataList[backgroundFar.id], { 0.5f,0.5f }, backgroundFar.size, backgroundFar.offset);
+		drw::Sprite(drw::spriteDataList[backgroundFar.id], { 0.5f,0.5f }, backgroundFar.size, farOffset2);
+		drw::Sprite(drw::spriteDataList[backgroundMid.id], { 0.5f,0.5f }, backgroundMid.size, backgroundMid.offset);
+		drw::Sprite(drw::spriteDataList[backgroundMid.id], { 0.5f,0.5f }, backgroundMid.size, midOffset2);
+		drw::Sprite(drw::spriteDataList[backgroundNear.id], { 0.5f,0.5f }, backgroundNear.size, backgroundNear.offset);
+		drw::Sprite(drw::spriteDataList[backgroundNear.id], { 0.5f,0.5f }, backgroundNear.size, nearOffset2);
 
 		obstcl::Draw(obstacles);
 

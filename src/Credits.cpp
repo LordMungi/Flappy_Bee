@@ -55,6 +55,13 @@ namespace credits
 		drw::Text(creditsTextData.text.c_str(), creditsTextData, { 0.5f, 0.8f }, creditsTextData.fontSize, { 0,0 }, BLACK_B);
 		drw::Text(credits2TextData.text.c_str(), credits2TextData, { 0.5f, 0.75f }, credits2TextData.fontSize, { 0,0 }, BLACK_B);
 		drw::Text(creditsTitle2TextData.text.c_str(), creditsTitle2TextData, { 0.5f, 0.65f }, creditsTitle2TextData.fontSize, { 0,0 }, BLACK_B);
+		credits3TextData.text = "Game Sprites - Vittorio Dolce";
 		drw::Text(credits3TextData.text.c_str(), credits3TextData, { 0.5f, 0.55f }, credits3TextData.fontSize, { 0,0 }, BLACK_B);
+		credits3TextData.text = "UI SFX - Cyrex Studios - https://cyrex-studios.itch.io/universal-ui-soundpack";
+		drw::Text(credits3TextData.text.c_str(), credits3TextData, { 0.5f, 0.50f }, credits3TextData.fontSize, { 0,0 }, BLACK_B);
+		credits3TextData.text = "Game SFX - FilmCow - https://filmcow.itch.io/filmcow-sfx";
+		drw::Text(credits3TextData.text.c_str(), credits3TextData, { 0.5f, 0.45f }, credits3TextData.fontSize, { 0,0 }, BLACK_B);
+		credits3TextData.text = "BGM - Pizza Doggy - https://pizzadoggy.itch.io/cozy-tunes";
+		drw::Text(credits3TextData.text.c_str(), credits3TextData, { 0.5f, 0.40f }, credits3TextData.fontSize, { 0,0 }, BLACK_B);
 	}
 }

@@ -20,16 +20,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ball.cpp" />
+    <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Obstacle.cpp" />
     <ClCompile Include="src\ObstacleManager.cpp" />
     <ClCompile Include="src\StateManager.cpp" />
+    <ClCompile Include="src\Templates.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ball.h" />
+    <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\GameState.h" />
     <ClInclude Include="src\Obstacle.h" />
     <ClInclude Include="src\ObstacleManager.h" />
     <ClInclude Include="src\StateManager.h" />
+    <ClInclude Include="src\Templates.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

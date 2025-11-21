@@ -1,6 +1,6 @@
 #include "StateManager.h"
 
 int main() {
-	MainLoop();
+	statemanager::MainLoop();
 	return 0;
 }

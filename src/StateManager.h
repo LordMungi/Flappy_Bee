@@ -3,10 +3,7 @@
 #include "Ball.h"
 #include "ObstacleManager.h"
 
-enum class GameState {
-	MAIN_MENU,
-	GAMEPLAY,
-	CREDITS
-};
-
-void MainLoop();
+namespace statemanager
+{
+	void MainLoop();
+}

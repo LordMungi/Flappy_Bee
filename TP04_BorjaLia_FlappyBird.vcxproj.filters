@@ -1,48 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="StateManager">
+      <UniqueIdentifier>{6b8eedca-e9f6-41d9-92a8-b62612907f2c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="StateManager\Game">
+      <UniqueIdentifier>{bbf94938-cab0-4922-be72-2df887668de8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="StateManager\Menu">
+      <UniqueIdentifier>{2c97e455-6d05-4f47-896b-d047e0c6e7a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StateManager\Game\Ball">
+      <UniqueIdentifier>{23af3c19-3616-4895-9290-6c11ae61aab0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StateManager\Game\Obstacle">
+      <UniqueIdentifier>{a2cd88b9-8c0f-4108-8489-bef64c1d0fac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{ba7fc77d-b478-4cad-8ed9-51a4bd26a778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities\Templates">
+      <UniqueIdentifier>{8eeef0d0-444d-4d46-a43e-448ed6d774a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ball.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Obstacle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObstacleManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>StateManager\Game</Filter>
     </ClCompile>
     <ClCompile Include="src\StateManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>StateManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ball.cpp">
+      <Filter>StateManager\Game\Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Obstacle.cpp">
+      <Filter>StateManager\Game\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObstacleManager.cpp">
+      <Filter>StateManager\Game\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>StateManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Templates.cpp">
+      <Filter>Utilities\Templates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Ball.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Game.h">
+      <Filter>StateManager\Game</Filter>
     </ClInclude>
-    <ClInclude Include="src\Obstacle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObstacleManager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\GameState.h">
+      <Filter>StateManager</Filter>
     </ClInclude>
     <ClInclude Include="src\StateManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>StateManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ball.h">
+      <Filter>StateManager\Game\Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Obstacle.h">
+      <Filter>StateManager\Game\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ObstacleManager.h">
+      <Filter>StateManager\Game\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Templates.h">
+      <Filter>Utilities\Templates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

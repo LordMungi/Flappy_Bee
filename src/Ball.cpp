@@ -5,8 +5,17 @@ float gravity = 3.0f;
 
 namespace bll {
 
+	snd::AudioData hitGround;
+	snd::AudioData jump;
+
 	void Init(Ball& ball, int player)
 	{
+		hitGround.file = "res/audio/hitground.wav";
+		hitGround.id = snd::InitAudioData(hitGround);
+
+		jump.file = "res/audio/jump.wav";
+		jump.id = snd::InitAudioData(jump);
+
 		ball.player = player;
 
 		switch (ball.player)
@@ -59,6 +68,7 @@ namespace bll {
 
 		if (ctrl::IsKeyPressed(ball.jumpKey) || ctrl::IsMousePressed(ball.jumpButton)) {
 			ball.vel.y = ball.jumpForce;
+			snd::Play(jump.id);
 		}
 	}
 
@@ -79,6 +89,7 @@ namespace bll {
 		if (ball.pos.y - ball.size.y < 0.0f) {
 			ball.pos.y = ball.size.y;
 			Die(ball);
+			snd::Play(hitGround.id);
 		}
 	}
 

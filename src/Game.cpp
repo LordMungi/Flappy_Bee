@@ -39,6 +39,8 @@ namespace game
 	bool isStarted = false;
 
 	snd::AudioData bgm;
+	snd::AudioData hitWall;
+	snd::AudioData point;
 
 	ctrl::Key pauseKey = ctrl::Key::ESCAPE;
 	ctrl::Key startKey = ctrl::Key::SPACE;
@@ -47,6 +49,12 @@ namespace game
 	{
 		bgm.file = "res/audio/bgm1.mp3";
 		bgm.id = snd::InitAudioData(bgm);
+
+		hitWall.file = "res/audio/hitwall.wav";
+		hitWall.id = snd::InitAudioData(hitWall);
+
+		point.file = "res/audio/point.wav";
+		point.id = snd::InitAudioData(point);
 
 		vec::Vector2 backgroundSize = { 3.5f, 1 };
 
@@ -174,6 +182,7 @@ namespace game
 				{
 					players[i].hasScored = true;
 					players[i].score++;
+					snd::Play(point.id);
 				}
 				else if (obstacles[0].pos.x > players[i].pos.x)
 				{
@@ -197,7 +206,10 @@ namespace game
 			for (int i = 0; i < config::playersInGame; i++)
 			{
 				if (obstcl::mngr::Collide(obstacles[o].obstacles, players[i]))
+				{
 					bll::Die(players[i]);
+					snd::Play(hitWall.id);
+				}
 			}
 		}
 

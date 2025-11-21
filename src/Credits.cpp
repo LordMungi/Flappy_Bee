@@ -10,11 +10,13 @@ namespace credits
 	drw::TextData creditsTitleTextData;
 	drw::TextData creditsTextData;
 	drw::TextData credits2TextData;
+	drw::TextData creditsTitle2TextData;
+	drw::TextData credits3TextData;
 
 	void init()
 	{
 		backButton = templates::button;
-		backButton.pos = { 0.5f, 0.3f };
+		backButton.pos = { 0.5f, 0.1f };
 		backButton.textData.text = "Back";
 		btn::Init(backButton);
 
@@ -26,6 +28,12 @@ namespace credits
 
 		credits2TextData.fontSize = 0.05f;
 		credits2TextData.text = "Santino Verrua";
+
+		creditsTitle2TextData.fontSize = 0.07f;
+		creditsTitle2TextData.text = "Art";
+
+		credits3TextData.fontSize = 0.05f;
+		credits3TextData.text = "Vittorio Dolce";
 
 		nextState = GameState::CREDITS;
 	}
@@ -42,8 +50,10 @@ namespace credits
 	void draw()
 	{
 		btn::Draw(backButton);
-		drw::Text(creditsTitleTextData.text.c_str(), creditsTitleTextData, { 0.5f, 0.7f }, creditsTitleTextData.fontSize, { 0,0 }, BLACK_B);
-		drw::Text(creditsTextData.text.c_str(), creditsTextData, { 0.5f, 0.6f }, creditsTextData.fontSize, { 0,0 }, BLACK_B);
-		drw::Text(credits2TextData.text.c_str(), credits2TextData, { 0.5f, 0.53f }, credits2TextData.fontSize, { 0,0 }, BLACK_B);
+		drw::Text(creditsTitleTextData.text.c_str(), creditsTitleTextData, { 0.5f, 0.90f }, creditsTitleTextData.fontSize, { 0,0 }, BLACK_B);
+		drw::Text(creditsTextData.text.c_str(), creditsTextData, { 0.5f, 0.8f }, creditsTextData.fontSize, { 0,0 }, BLACK_B);
+		drw::Text(credits2TextData.text.c_str(), credits2TextData, { 0.5f, 0.75f }, credits2TextData.fontSize, { 0,0 }, BLACK_B);
+		drw::Text(creditsTitle2TextData.text.c_str(), creditsTitle2TextData, { 0.5f, 0.65f }, creditsTitle2TextData.fontSize, { 0,0 }, BLACK_B);
+		drw::Text(credits3TextData.text.c_str(), credits3TextData, { 0.5f, 0.55f }, credits3TextData.fontSize, { 0,0 }, BLACK_B);
 	}
 }

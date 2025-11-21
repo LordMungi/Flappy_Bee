@@ -45,7 +45,7 @@ namespace game
 
 	void init()
 	{
-		bgm.file = "res/audio/bgm1.wav";
+		bgm.file = "res/audio/bgm1.mp3";
 		bgm.id = snd::InitAudioData(bgm);
 
 		vec::Vector2 backgroundSize = { 3.5f, 1 };
